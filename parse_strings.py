@@ -39,10 +39,27 @@ def random_parse_string(s):
 
 
 def add_text(objectId, text):
-    return {
-        'insertText': {
-            'objectId': objectId,
-            'insertionIndex': 0,
-            'text': text
+    return [
+        {
+            'insertText': {
+                'objectId': objectId,
+                'insertionIndex': 0,
+                'text': text
+            }
+        },{
+            'updateTextStyle': {
+                'objectId': objectId,
+                'textRange': {'type': 'ALL'},
+                'style': {
+                    'fontFamily':  np.random.choice(['Pacifico', 'Caveat']),
+                    'bold': True,
+                    'fontSize': {
+                        'magnitude': 70,
+                        'unit': 'PT'
+                    },
+                },
+
+                'fields': 'foregroundColor,fontFamily,fontSize, bold'
+            }
         }
-    }
+    ]
