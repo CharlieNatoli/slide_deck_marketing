@@ -70,7 +70,7 @@ def add_star(**kwargs):
     return _get_generic_shape(shapeType=shapeType, **kwargs)
 
 def add_n_agon(**kwargs):
-    shapeType = np.random.choice(['TRAPEZOID', 'PARALELOGRAM', 'HEXAGON', 'HEPTAGON', 'OCTAGON', 'DECAGON', 'DODECAGON',])
+    shapeType = np.random.choice(['TRAPEZOID', 'HEXAGON', 'HEPTAGON', 'OCTAGON', 'DECAGON', 'DODECAGON',])
     return _get_generic_shape(shapeType=shapeType, **kwargs)
 
 def add_rectangle_or_circles(**kwargs):
