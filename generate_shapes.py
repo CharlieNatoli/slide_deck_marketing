@@ -16,7 +16,7 @@ def _get_transform_blob(scaleX=None, scaleY=None, translateX=None, translateY=No
         translateX = np.random.randint(0,500)
 
     if translateY is None:
-        translateY = np.random.randint(0,500)
+        translateY = np.random.randint(0,200)
     return {
             'scaleX': scaleX,
             'scaleY': scaleY,
