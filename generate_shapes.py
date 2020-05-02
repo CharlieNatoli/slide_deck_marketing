@@ -1,5 +1,4 @@
 import numpy as np
-import json
 
 def _get_size_blob(size):
     return { 'magnitude': size,
@@ -64,4 +63,4 @@ func_list = [
 
 def random_add_shape(**kwargs):
     func = np.random.choice(func_list)
-    return json.dumps(func(**kwargs))
+    return func(**kwargs)
