@@ -4,3 +4,4 @@ settings.py
 token.pickle
 *.pyc
 __pycache__/*
+database.txt
