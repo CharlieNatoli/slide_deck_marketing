@@ -3,7 +3,7 @@ from authenticate import HorribleGoogleAPIService
 from file_sharing import HorribleGoogleDriveHandler
 from slidehub_dot_ai import DATABASE_FILE_PATH
 
-DEFAULT_RESPONSE = 'We appreciate your stupid feedback'
+DEFAULT_RESPONSE = '<spam style="color:black">{}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</spam>'
 
 
 def file_ids():
@@ -20,11 +20,14 @@ def get_comments_for_file(file_id, drive_handler):
 
 def reply_to_comments(comments,file_id, drive_handler, response):
     for comment in comments['comments']:
-        drive_handler.api_service.drive_service.replies().create(
-            commentId=comment['id'], fileId=file_id, fields='*',
-            body={'content': response
-                  }
-        ).execute()
+        try:
+            drive_handler.api_service.drive_service.replies().create(
+                commentId=comment['id'], fileId=file_id, fields='*',
+                body={'content': response.format(comment['author']['displayName'])
+                      }
+            ).execute()
+        except:
+            pass
 
 
 if __name__ == '__main__':
