@@ -38,6 +38,7 @@ if __name__ == '__main__':
     deck_info = slide_deck_editor.create_slide_deck()
 
     requests = []
+    requests.extend(slide_deck_editor.add_background(deck_info))
     for i in range(np.random.randint(1, 10)):
         requests.extend(slide_deck_editor.create_text_box(deck_info, message_text))
         requests.extend(slide_deck_editor.add_random_shape(deck_info))
