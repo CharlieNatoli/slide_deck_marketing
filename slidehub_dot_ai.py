@@ -86,6 +86,8 @@ if __name__ == '__main__':
     if parsed_args.ai:
         for i in range(parsed_args.num_shapes):
             requests.extend(slide_deck_editor.add_random_shape(deck_info))
+        for i in range(5):
+            requests.extend(slide_deck_editor.create_small_text_box(deck_info, message_text))
     requests.extend(slide_deck_editor.create_text_box(deck_info, message_text))
     slide_deck_editor.update_all(deck_info, requests)
 
