@@ -1,5 +1,5 @@
-
 import numpy as np
+import os
 
 from authenticate import HorribleGoogleAPIService
 from slide_file_utilities import HorribleSlideDeckEditor
@@ -38,6 +38,9 @@ _ivvv{)^^~:~MgWWBg/.~OgRRgH<---CBgggWt` 6HRgRQi'`'PWgBgBv'^MQgHRW"l1Y1TT11}`-fWQ
 --'`'` '`'-  '`-.' ` ' -`.  `-  -  .  .   - `..  '  '`.. ` .' `. .-` `  ``- '"'  .  .  - .  .
 '`   .   ..  -'.    .  .--  ' .'-'  '`'`' -`  `..- '    '...  - '-.--` -.  ..  '- - .. -  . .
 ''')
+DATABASE_FILE_NAME = 'database.txt'
+
+DATABASE_FILE_PATH = os.path.join(os.getcwd(), DATABASE_FILE_NAME)
 
 def get_emails():
     email_list = input('Please enter a list of contacts that you wish to delight: ')
@@ -52,6 +55,10 @@ def get_user_input():
 
 if __name__ == '__main__':
     welcome_banner()
+
+    if not os.path.exists(DATABASE_FILE_PATH):
+        with open(DATABASE_FILE_NAME, 'w') as fp:
+            pass
 
     email_list, message_text = get_user_input()
 
@@ -75,3 +82,6 @@ if __name__ == '__main__':
 
     for email in email_list:
         google_drive_handler.share_file(deck_info['presentationId'], email)
+
+    with open(DATABASE_FILE_NAME, 'a') as fp:
+        fp.write(deck_info['presentationId'] + ',')
