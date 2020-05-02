@@ -30,6 +30,17 @@ class HorribleSlideDeckEditor(object):
         add_color = update_object_color(object_id)
         return [shape, add_color]
 
+    def create_small_text_box(self, deck_info, message_text):
+        object_id = str(uuid.uuid4())
+        text_box_call = add_text_box(
+            objectId=object_id,
+            pageId=deck_info['slides'][0]['objectId'])
+
+        add_text_call = add_text(objectId=object_id,
+                                 fontsize=20,
+                                 text=random_parse_string(message_text))
+        return [text_box_call, add_text_call]
+
     def create_text_box(self, deck_info, message_text):
         object_id = str(uuid.uuid4())
         text_box_call = add_text_box(
@@ -40,7 +51,7 @@ class HorribleSlideDeckEditor(object):
             pageId=deck_info['slides'][0]['objectId'])
 
         add_text_call = add_text(objectId=object_id,
-                                 text=random_parse_string(message_text))
+                                 text=message_text)
         return [text_box_call, add_text_call]
 
     def update_all(self, deck_info, requests):

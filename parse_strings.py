@@ -38,7 +38,7 @@ def random_parse_string(s):
     return func(s)
 
 
-def add_text(objectId, text):
+def add_text(objectId, text, fontsize=70):
     return [
         {
             'insertText': {
@@ -54,9 +54,15 @@ def add_text(objectId, text):
                     'fontFamily':  np.random.choice(['Pacifico', 'Caveat']),
                     'bold': True,
                     'fontSize': {
-                        'magnitude': 70,
+                        'magnitude': fontsize,
                         'unit': 'PT'
                     },
+                    'foregroundColor': {
+                        'opaqueColor': {
+                            'rgbColor':
+                                { 'blue': 0.0, 'green': 0.0,  'red': 0.0} if fontsize==70 else {'blue': 1.0, 'green': 1.0, 'red': 1.0}
+                        }
+                    }
                 },
 
                 'fields': 'foregroundColor,fontFamily,fontSize, bold'
