@@ -32,6 +32,7 @@ if __name__ == '__main__':
 
     for i in range(np.random.randint(1, 10)):
         slide_deck_editor.create_text_box(deck_info, message_text)
+        slide_deck_editor.add_random_shape(deck_info)
 
     for email in email_list:
         google_drive_handler.share_file(deck_info['presentationId'], email)

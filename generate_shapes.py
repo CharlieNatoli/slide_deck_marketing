@@ -26,7 +26,7 @@ def _get_transform_blob(scaleX=None, scaleY=None, translateX=None, translateY=No
             }
 
 
-def _get_generic_shape(objectId, pageId, shapeType, height=None, width=None, **kwargs):
+def _get_generic_object(objectId, pageId, shapeType, height=None, width=None, **kwargs):
     if height is None:
         height = np.random.randint(1,100)
     if width is None:
@@ -43,20 +43,24 @@ def _get_generic_shape(objectId, pageId, shapeType, height=None, width=None, **k
                 'width': _get_size_blob(width),
                 },
             'transform': _get_transform_blob(**kwargs),
-            'shapeBackgroundFill': _color_picker(),
             }
         }
     }
 
+def _get_generic_shape(**kwargs):
+    generic_obj = _get_generic_object(**kwargs)
+    #generic_obj['createShape']['elementProperties']['backgroundFill'] =  _color_picker()
+    return generic_obj
+
 def _color_picker():
-    colors = [ (255, 0, 0),
-               (0, 255, 0),
-               (0, 0, 255),
-               (255, 255, 0),
-               (255, 0, 255),
-               (0, 255, 255),
+    colors = [ '255,0,0',
+               '0,255,0',
+               '0,0,255',
+               '255,255,0',
+               '255,0,255',
+               '0,255,255',
                ]
-    color = np.random.choice(colors)
+    color = [int(x) for x in np.random.choice(colors).split(',')]
     return {'solidFill': {'red': color[0], 'green': color[1], 'blue': color[2]}}
 
 
@@ -110,7 +114,7 @@ func_dict = {
         }
 
 def random_add_shape(**kwargs):
-    func = np.random.choice(func_dict.items())
+    func = np.random.choice(list(func_dict.values()))
     return func(**kwargs)
 
 def add_specific_shape(shape_name, **kwargs):
@@ -118,4 +122,4 @@ def add_specific_shape(shape_name, **kwargs):
     return func(**kwargs)
 
 def add_text_box(**kwargs):
-    return _get_generic_shape(shapeType='TEXT_BOX', **kwargs)
+    return _get_generic_object(shapeType='TEXT_BOX', **kwargs)
