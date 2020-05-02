@@ -93,9 +93,9 @@ def add_cees(**kwargs):
     shapeType = np.random.choice(['CAN', 'CHEVRON', 'CLOUD',])
     return _get_generic_object(shapeType=shapeType, **kwargs)
 
-def add_math(**kwargs):
-    shapeType = np.random.choice(['MATH_DIVIDE', 'MATH_EQUAL ''MATH_NOT_EQUAL', 'MATH_PLUS',])
-    return _get_generic_object(shapeType=shapeType, **kwargs)
+# def add_math(**kwargs):
+#     shapeType = np.random.choice(['MATH_DIVIDE', 'MATH_EQUAL ''MATH_NOT_EQUAL', 'MATH_PLUS',])
+#     return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_irregular(**kwargs):
     shapeType = np.random.choice(['IRREGULAR_SEAL_1', 'IRREGULAR_SEAL_2', 'LIGHTNING_BOLT',])
@@ -112,7 +112,7 @@ func_dict = {
         'ARROW': add_arrows,
         'BRACES': add_braces,
         'CEES': add_cees,
-        'MATH': add_math,
+        # 'MATH': add_math,
         'IRREGULAR': add_irregular,
         'REST': add_rest,
         }
