@@ -5,7 +5,17 @@ from file_sharing import HorribleGoogleDriveHandler
 
 # main function. This can be where we create the command line interface
 
+
+def get_emails():
+    email_list = input('Please enter a list of contacts that you wish to delight: ')
+    email_list = email_list.split(',')
+    return [x.strip() for x in email_list]
+
+
 if __name__ == '__main__':
+
+    email_list = get_emails()
+
     api_service = HorribleGoogleAPIService()
 
     slide_deck_editor = HorribleSlideDeckEditor(api_service)
@@ -13,4 +23,5 @@ if __name__ == '__main__':
 
     deck_info = slide_deck_editor.create_slide_deck()
 
-    google_drive_handler.share_file(deck_info['presentationId'], 'slidehub_dot_ai@gmail.com')
+    for email in email_list:
+        google_drive_handler.share_file(deck_info['presentationId'], email)
