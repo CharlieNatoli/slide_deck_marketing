@@ -12,4 +12,4 @@ class HorribleSlideDeckEditor(object):
 
     def add_random_shape(self, presentationId, pageId, **kwargs):
         shape = random_add_shape(presentationId=presentationId, pageId=pageId, **kwargs)
-        return self.api_service.slides_service.presentations().batchUpdate(presentationId=presentationId, body={'requests': [shape]})
+        return self.api_service.slides_service.presentations().batchUpdate(presentationId=presentationId, body={'requests': [shape]}).execute()
