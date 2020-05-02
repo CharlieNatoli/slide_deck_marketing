@@ -76,9 +76,9 @@ if __name__ == '__main__':
 
     requests = []
     requests.extend(slide_deck_editor.add_background(deck_info))
-    requests.extend(slide_deck_editor.create_text_box(deck_info, message_text))
-    for i in range(np.random.randint(1, 10)):
+    for i in range(30):
         requests.extend(slide_deck_editor.add_random_shape(deck_info))
+    requests.extend(slide_deck_editor.create_text_box(deck_info, message_text))
     slide_deck_editor.update_all(deck_info, requests)
 
     for email in email_list:

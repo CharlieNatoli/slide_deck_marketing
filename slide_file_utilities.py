@@ -34,7 +34,7 @@ class HorribleSlideDeckEditor(object):
         object_id = str(uuid.uuid4())
         text_box_call = add_text_box(
             objectId=object_id,
-            translateX=0, translateY=0,
+            translateX=10, translateY=10,
             scaleX=0.99, scaleY=0.99,
             height=40, width=100, pageId=deck_info['slides'][0]['objectId'])
 
