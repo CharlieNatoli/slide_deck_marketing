@@ -14,9 +14,13 @@ class HorribleSlideDeckEditor(object):
     def create_slide_deck(self):
         return self.api_service.slides_service.presentations().create(body={}).execute()
 
-    def add_random_shape(self, presentationId, pageId, **kwargs):
-        shape = random_add_shape(presentationId=presentationId, pageId=pageId, **kwargs)
-        return self.api_service.slides_service.presentations().batchUpdate(presentationId=presentationId, body={'requests': [shape]}).execute()
+    def add_random_shape(self, deck_info, **kwargs):
+        object_id = str(uuid.uuid4())
+        shape = random_add_shape(objectId=object_id, pageId=deck_info['slides'][0]['objectId'], **kwargs)
+        self.api_service.slides_service.presentations().batchUpdate(
+           presentationId=deck_info['presentationId'],
+           body={'requests': [shape]}
+        ).execute()
 
     def create_text_box(self, deck_info, message_text):
         object_id = str(uuid.uuid4())
