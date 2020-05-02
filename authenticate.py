@@ -11,16 +11,19 @@ from settings import CREDENTIALS_FILE
 
 TOKEN_FILE = os.path.join(os.getcwd(), 'token.pickle')
 
+# everything having to do with the google api account
 
-class HorribleGoogleSlidesRunner(object):
+
+class HorribleGoogleAPIService(object):
 
     SCOPES = ['https://www.googleapis.com/auth/presentations']
 
     def __init__(self):
         self.creds = self._creds()
 
-    def make_horrible_slide(self):
-        return self._slides_service.presentations().create(body={}).execute()
+    @property
+    def slides_service(self):
+        return build('slides', 'v1', credentials=self.creds)
 
     def _creds(self):
         creds = None
@@ -43,13 +46,3 @@ class HorribleGoogleSlidesRunner(object):
                 pickle.dump(creds, token)
 
         return creds
-
-    @property
-    def _slides_service(self):
-        return build('slides', 'v1', credentials=self.creds)
-
-
-if __name__ == '__main__':
-    slide_deck = HorribleGoogleSlidesRunner().make_horrible_slide()
-
-    print(slide_deck['presentationId'])
