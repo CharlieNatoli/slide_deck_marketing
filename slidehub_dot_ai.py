@@ -4,6 +4,7 @@ import os
 from authenticate import HorribleGoogleAPIService
 from slide_file_utilities import HorribleSlideDeckEditor
 from file_sharing import HorribleGoogleDriveHandler
+import argparse
 
 # main function. This can be where we create the command line interface
 
@@ -54,6 +55,12 @@ def get_user_input():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='The best marketing tool')
+    parser.add_argument('--num-shapes', dest='num_shapes', default=30, type=int, help='How many shapes do you want?')
+    parser.add_argument('--no-ai', dest='ai', default=True, const=False, action='store_const', help='How many shapes do you want?')
+
+    parsed_args = parser.parse_args()
+
     welcome_banner()
 
     if not os.path.exists(DATABASE_FILE_PATH):
@@ -76,8 +83,9 @@ if __name__ == '__main__':
 
     requests = []
     requests.extend(slide_deck_editor.add_background(deck_info))
-    for i in range(30):
-        requests.extend(slide_deck_editor.add_random_shape(deck_info))
+    if parsed_args.ai:
+        for i in range(parsed_args.num_shapes):
+            requests.extend(slide_deck_editor.add_random_shape(deck_info))
     requests.extend(slide_deck_editor.create_text_box(deck_info, message_text))
     slide_deck_editor.update_all(deck_info, requests)
 
