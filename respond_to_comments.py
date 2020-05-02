@@ -3,7 +3,7 @@ from authenticate import HorribleGoogleAPIService
 from file_sharing import HorribleGoogleDriveHandler
 from slidehub_dot_ai import DATABASE_FILE_PATH
 
-DEFAULT_RESPONSE = '<spam style="color:black">{}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</spam>'
+DEFAULT_RESPONSE = '{}: Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 
 
 def file_ids():

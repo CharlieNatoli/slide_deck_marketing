@@ -38,7 +38,7 @@ def random_parse_string(s):
     return func(s)
 
 
-def add_text(objectId, text, fontsize=70):
+def add_text(objectId, text, fontsize=48):
     return [
         {
             'insertText': {
@@ -60,7 +60,7 @@ def add_text(objectId, text, fontsize=70):
                     'foregroundColor': {
                         'opaqueColor': {
                             'rgbColor':
-                                { 'blue': 0.0, 'green': 0.0,  'red': 0.0} if fontsize==70 else {'blue': 1.0, 'green': 1.0, 'red': 1.0}
+                                { 'blue': 0.0, 'green': 0.0,  'red': 0.0} if fontsize==48 else {'blue': 1.0, 'green': 1.0, 'red': 1.0}
                         }
                     }
                 },

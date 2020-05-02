@@ -37,7 +37,7 @@ class HorribleSlideDeckEditor(object):
             pageId=deck_info['slides'][0]['objectId'])
 
         add_text_call = add_text(objectId=object_id,
-                                 fontsize=20,
+                                 fontsize=14,
                                  text=random_parse_string(message_text))
         return [text_box_call, add_text_call]
 
