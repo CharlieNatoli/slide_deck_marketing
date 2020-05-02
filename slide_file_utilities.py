@@ -4,6 +4,8 @@ import uuid
 from generate_shapes import add_text_box
 from parse_strings import add_text, random_parse_string
 
+DEFAULT_TITLE = 'A [special] message [just] for you'
+
 
 class HorribleSlideDeckEditor(object):
 
@@ -11,7 +13,8 @@ class HorribleSlideDeckEditor(object):
         self.api_service = api_service
 
     def create_slide_deck(self):
-        return self.api_service.slides_service.presentations().create(body={}).execute()
+        body = {'title': DEFAULT_TITLE}
+        return self.api_service.slides_service.presentations().create(body=body).execute()
 
     def create_text_box(self, deck_info, message_text):
         object_id = str(uuid.uuid4())
