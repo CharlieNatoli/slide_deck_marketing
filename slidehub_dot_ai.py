@@ -4,6 +4,7 @@ import os
 from authenticate import HorribleGoogleAPIService
 from slide_file_utilities import HorribleSlideDeckEditor
 from file_sharing import HorribleGoogleDriveHandler
+import argparse
 
 # main function. This can be where we create the command line interface
 
@@ -54,6 +55,9 @@ def get_user_input():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='The best marketing tool')
+    parser.add_argument('--num-shapes', type=int, help='How many shapes do you want?')
+
     welcome_banner()
 
     if not os.path.exists(DATABASE_FILE_PATH):
