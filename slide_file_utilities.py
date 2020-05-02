@@ -32,7 +32,11 @@ class HorribleSlideDeckEditor(object):
 
     def create_text_box(self, deck_info, message_text):
         object_id = str(uuid.uuid4())
-        text_box_call = add_text_box(objectId=object_id, pageId=deck_info['slides'][0]['objectId'])
+        text_box_call = add_text_box(
+            objectId=object_id,
+            translateX=0, translateY=0,
+            scaleX=0.99, scaleY=0.99,
+            height=40, width=100, pageId=deck_info['slides'][0]['objectId'])
 
         add_text_call = add_text(objectId=object_id, text=random_parse_string(message_text))
         return [text_box_call, add_text_call]
