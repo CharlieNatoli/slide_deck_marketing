@@ -1,9 +1,5 @@
 
-import numpy as np
-import os
-
 from authenticate import HorribleGoogleAPIService
-from slide_file_utilities import HorribleSlideDeckEditor
 from file_sharing import HorribleGoogleDriveHandler
 from slidehub_dot_ai import DATABASE_FILE_PATH
 
