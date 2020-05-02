@@ -2,10 +2,8 @@ from generate_shapes import random_add_shape
 
 import uuid
 # add add all api calls to add stuff to the slide deck here
-from generate_shapes import add_text_box
+from generate_shapes import add_text_box, update_object_color
 from parse_strings import add_text, random_parse_string
-
-DEFAULT_TITLE = 'A [special] message [just] for you'
 
 
 class HorribleSlideDeckEditor(object):
@@ -14,13 +12,13 @@ class HorribleSlideDeckEditor(object):
         self.api_service = api_service
 
     def create_slide_deck(self):
-        body = {'title': DEFAULT_TITLE}
-        return self.api_service.slides_service.presentations().create(body=body).execute()
+        return self.api_service.slides_service.presentations().create(body={}).execute()
 
     def add_random_shape(self, deck_info, **kwargs):
         object_id = str(uuid.uuid4())
         shape = random_add_shape(objectId=object_id, pageId=deck_info['slides'][0]['objectId'], **kwargs)
-        return [shape]
+        add_color = update_object_color(object_id)
+        return [shape, add_color]
 
     def create_text_box(self, deck_info, message_text):
         object_id = str(uuid.uuid4())

@@ -47,59 +47,63 @@ def _get_generic_object(objectId, pageId, shapeType, height=None, width=None, **
         }
     }
 
-def _get_generic_shape(**kwargs):
-    generic_obj = _get_generic_object(**kwargs)
-    #generic_obj['createShape']['elementProperties']['backgroundFill'] =  _color_picker()
-    return generic_obj
-
 def _color_picker():
-    colors = [ '255,0,0',
-               '0,255,0',
-               '0,0,255',
-               '255,255,0',
-               '255,0,255',
-               '0,255,255',
+    colors = [ '1,0,0',
+               '0,1,0',
+               '0,0,1',
+               '1,1,0',
+               '1,0,1',
+               '0,1,1',
                ]
     color = [int(x) for x in np.random.choice(colors).split(',')]
-    return {'solidFill': {'red': color[0], 'green': color[1], 'blue': color[2]}}
+    return {'solidFill': {'color': {'rgbColor': {'red': color[0], 'green': color[1], 'blue': color[2]}}}}
 
-
+def update_object_color(objectId):
+    return {
+            'updateShapeProperties': {
+                'objectId': objectId,
+                'fields':'shapeBackgroundFill.solidFill.color',
+                'shapeProperties': {
+                    'shapeBackgroundFill': _color_picker()
+                    }
+                }
+            }
 
 def add_star(**kwargs):
     shapeType = np.random.choice(['STAR_12', 'STAR_16', 'STAR_24', 'STAR_32', 'STAR_5', 'SUN',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_n_agon(**kwargs):
     shapeType = np.random.choice(['TRAPEZOID', 'HEXAGON', 'HEPTAGON', 'OCTAGON', 'DECAGON', 'DODECAGON',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_rectangle_or_circles(**kwargs):
     shapeType = np.random.choice(['RECTANGLE','ROUND_RECTANGLE','ELLIPSE', 'PIE', 'CUBE',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_arrows(**kwargs):
     shapeType = np.random.choice(['BENT_UP_ARROW', 'QUAD_ARROW', 'UTURN_ARROW', 'DOWN_ARROW_CALLOUT'])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_braces(**kwargs):
     shapeType = np.random.choice(['BRACE_PAIR', 'BRACKET_PAIR',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_cees(**kwargs):
     shapeType = np.random.choice(['CAN', 'CHEVRON', 'CLOUD',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_math(**kwargs):
     shapeType = np.random.choice(['MATH_DIVIDE', 'MATH_EQUAL ''MATH_NOT_EQUAL', 'MATH_PLUS',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_irregular(**kwargs):
     shapeType = np.random.choice(['IRREGULAR_SEAL_1', 'IRREGULAR_SEAL_2', 'LIGHTNING_BOLT',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 def add_rest(**kwargs):
     shapeType = np.random.choice(['DOUBLE_WAVE', 'HEART', 'NO_SMOKING', 'TEARDROP', 'DONUT', 'HOME_PLATE', 'PLAQUE', 'RIBBON', 'SPEECH', 'STARBURST',])
-    return _get_generic_shape(shapeType=shapeType, **kwargs)
+    return _get_generic_object(shapeType=shapeType, **kwargs)
 
 func_dict = {
         'STAR': add_star,
