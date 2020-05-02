@@ -1,5 +1,6 @@
 .python-version
 settings.py
 .idea/*
-__pycache__
 token.pickle
+*.pyc
+__pycache__/*
