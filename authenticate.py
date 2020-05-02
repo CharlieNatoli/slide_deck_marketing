@@ -16,7 +16,8 @@ TOKEN_FILE = os.path.join(os.getcwd(), 'token.pickle')
 
 class HorribleGoogleAPIService(object):
 
-    SCOPES = ['https://www.googleapis.com/auth/presentations']
+    SCOPES = ['https://www.googleapis.com/auth/presentations',
+              'https://www.googleapis.com/auth/drive']
 
     def __init__(self):
         self.creds = self._creds()
@@ -24,6 +25,10 @@ class HorribleGoogleAPIService(object):
     @property
     def slides_service(self):
         return build('slides', 'v1', credentials=self.creds)
+
+    @property
+    def drive_service(self):
+        return build('drive', 'v3', credentials=self.creds)
 
     def _creds(self):
         creds = None
