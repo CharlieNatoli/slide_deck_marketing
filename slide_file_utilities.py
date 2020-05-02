@@ -19,7 +19,6 @@ class HorribleSlideDeckEditor(object):
 
         add_text_call = add_text(objectId=object_id, text=random_parse_string(message_text))
 
-        # return self.\
         self.api_service.slides_service.presentations().batchUpdate(
             presentationId=deck_info['presentationId'],
             body={'requests': [text_box_call, add_text_call]}
