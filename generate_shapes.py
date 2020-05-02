@@ -37,7 +37,7 @@ def _get_generic_shape(objectId, pageId, shapeType, height=None, width=None, **k
         'createShape': {
         'objectId': objectId,
         'shapeType': shapeType,
-        'shapeProperties': {
+        'elementProperties': {
             'pageObjectId': pageId,
             'size': {
                 'height': _get_size_blob(height),
@@ -65,3 +65,6 @@ func_list = [
 def random_add_shape(**kwargs):
     func = np.random.choice(func_list)
     return json.dumps(func(**kwargs))
+
+def add_text_box(**kwargs):
+    return _get_generic_shape(shapeType='TEXT_BOX', **kwargs)

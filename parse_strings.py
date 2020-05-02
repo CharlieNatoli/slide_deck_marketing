@@ -7,16 +7,6 @@ def add_bluh(s):
 def add_bruh(s):
     return ', bruh.'.join(s.split('.'))
 
-
-func_list = [
-        add_bluh,
-        add_bruh,
-        ]
-
-def random_parse_string(s):
-    func = np.random.choice(func_list)
-    return func(s)
-
 def mockbob_string(s):
     return_string = ''
     force_lowercase = True
@@ -34,3 +24,25 @@ def mockbob_string(s):
         else:
             return_string += s[i]
     return return_string
+
+
+func_list = [
+    add_bluh,
+    add_bruh,
+    mockbob_string
+]
+
+
+def random_parse_string(s):
+    func = np.random.choice(func_list)
+    return func(s)
+
+
+def add_text(objectId, text):
+    return {
+        'insertText': {
+            'objectId': objectId,
+            'insertionIndex': 0,
+            'text': text
+        }
+    }
